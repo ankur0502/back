@@ -1,0 +1,8 @@
+const express=require('express');
+const router=express.Router();
+const coursecontroller=require('../controller/courseController');
+router.get('/',coursecontroller.getCourses);
+router.put('/:cid',coursecontroller.updateCourse);
+router.post('/',coursecontroller.createCourses);
+router.delete('/:cid',coursecontroller.deleteCourse);
+module.exports=router;

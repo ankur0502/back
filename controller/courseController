@@ -1,0 +1,29 @@
+const Course=require('../Model/course');
+console.log('in the controller');
+exports.getCourses=(req,res)=>{
+   Course.getAll((courses)=>{
+    res.json(courses);
+   }); 
+};
+exports.updateCourse=(req,res) =>{
+   const {cid}=req.param;
+   const{cname,fees,duration}=req.body;
+   const updatedCourse={ cname,fees,duration };
+   Course.update(cid,updatedCourse,(result) =>{
+      res.json('Course updated successfully');
+   });
+};
+exports.createCourses=(req,res)=>{
+   const{cname,fees,duration}=req.body;
+   const value={cname,fees,duration};
+   Course.create(value,(result)=>{
+res.json({message:'course inserted successfully',courseId: result.insertId });
+   });
+};
+exports.deleteCourse=(req,res)=>{
+   const{cid}=req.params;
+   Course.delete(cid,(result)=> {
+      res.json({message:'data deleted successfully'});
+   });
+
+};
